@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>消费金融专题分析报告 · 催收回款承压 × 助贷暴雷</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --ink:#1a2233;--sub:#5b6a82;--line:#e3e8f0;--bg:#f5f7fb;--panel:#ffffff;
+    --red:#c0392b;--redbg:#fdecea;--orange:#e08a1e;--orangebg:#fef4e6;
+    --amber:#c9a227;--amberbg:#fbf6e3;--green:#1e8e5a;--greenbg:#e8f6ef;
+    --blue:#2563c9;--bluebg:#eaf1fb;--purple:#7c4dcc;
+  }
+  body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;
+    background:var(--bg);color:var(--ink);line-height:1.72;-webkit-font-smoothing:antialiased}
+  .page{max-width:960px;margin:0 auto;background:var(--panel);box-shadow:0 1px 40px rgba(20,40,80,.08);}
+  .hero{background:linear-gradient(135deg,#16233c 0%,#223655 55%,#2c476e 100%);color:#eef3fb;padding:44px 48px 34px}
+  .hero .tag{display:inline-block;font-size:12px;font-weight:700;letter-spacing:1px;color:#9fc0ff;border:1px solid rgba(159,192,255,.4);border-radius:20px;padding:3px 12px;margin-bottom:16px}
+  .hero h1{font-size:27px;font-weight:800;letter-spacing:.5px;line-height:1.32}
+  .hero .sub{font-size:14px;color:#b7c6de;margin-top:10px;font-weight:500}
+  .hero .meta{font-size:12px;color:#8ea3c4;margin-top:18px;border-top:1px solid rgba(255,255,255,.12);padding-top:14px}
+  .body{padding:16px 48px 48px}
+  h2{font-size:19px;font-weight:800;margin:38px 0 14px;padding-left:13px;border-left:4px solid var(--blue);color:#16233c}
+  h3{font-size:15.5px;font-weight:800;margin:24px 0 10px;color:#223655}
+  h4{font-size:14px;font-weight:800;margin:16px 0 8px;color:#334b6e}
+  p{font-size:14px;color:#2c3a52;margin:8px 0}
+  .lead{font-size:14.5px;color:#33415c}
+  ul,ol{margin:8px 0 8px 22px}
+  li{font-size:13.7px;color:#2c3a52;margin:5px 0}
+  b,strong{color:#12203a}
+  .exec{background:linear-gradient(120deg,#eef3fb,#eaf6f0);border:1px solid #d4e2f5;border-radius:14px;padding:20px 24px;margin:24px 0}
+  .exec h3{margin-top:0;color:#16233c;font-size:15px}
+  .exec ol{margin-left:20px}
+  .exec li{font-size:13.6px;margin:7px 0}
+  table{width:100%;border-collapse:collapse;margin:14px 0;font-size:12.8px}
+  th,td{border:1px solid var(--line);padding:9px 11px;text-align:left;vertical-align:top}
+  th{background:#f0f4fa;font-weight:800;color:#223655;font-size:12.5px}
+  tbody tr:nth-child(even){background:#fafbfe}
+  td.c,th.c{text-align:center}
+  .badge{display:inline-block;font-weight:800;font-size:11.5px;padding:2px 9px;border-radius:20px;white-space:nowrap}
+  .b-red{background:var(--redbg);color:var(--red)}
+  .b-orange{background:var(--orangebg);color:var(--orange)}
+  .b-amber{background:var(--amberbg);color:var(--amber)}
+  .b-green{background:var(--greenbg);color:var(--green)}
+  .b-blue{background:var(--bluebg);color:var(--blue)}
+  .cards{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:16px 0}
+  .card{border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:#fff}
+  .card.risk{border-top:3px solid var(--red)}
+  .card.mid{border-top:3px solid var(--orange)}
+  .card.safe{border-top:3px solid var(--green)}
+  .card .ct{font-size:13.5px;font-weight:800;margin-bottom:6px}
+  .card .ct .tagm{font-size:10.5px;padding:1px 7px;border-radius:6px;margin-left:6px;vertical-align:middle}
+  .card .cl{font-size:12.5px;color:#33415c;line-height:1.62}
+  .card .cl b{color:#12203a}
+  .kv{font-size:12.5px;color:var(--sub);margin-top:6px}
+  .note{background:#f7f9fc;border-left:3px solid var(--blue);padding:10px 14px;font-size:12.6px;color:#3a4a66;margin:12px 0;border-radius:0 8px 8px 0}
+  .warn{background:#fdf6ef;border-left:3px solid var(--orange)}
+  .flow{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+  .flow .step{flex:1;min-width:180px;background:#f6f9fe;border:1px solid #dbe6f5;border-radius:10px;padding:12px 14px}
+  .flow .step .n{font-size:11px;font-weight:800;color:var(--blue);margin-bottom:4px}
+  .flow .step .t{font-size:12.6px;color:#25334e;line-height:1.55}
+  .foot{padding:26px 48px 40px;border-top:1px solid var(--line);font-size:11.5px;color:#8391a8;line-height:1.7}
+  @media(max-width:640px){
+    .hero,.body,.foot{padding-left:20px;padding-right:20px}
+    .cards{grid-template-columns:1fr}
+    .hero h1{font-size:21px}
+    table{font-size:11.8px}
+    th,td{padding:7px 8px}
+  }
+  @media print{body{background:#fff}.page{box-shadow:none}.hero{padding:30px 34px}}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="hero">
+    <span class="tag">消费金融 · 风控专题</span>
+    <h1>催收回款承压 × 助贷暴雷双重冲击下的<br>客群影响分析 与 准入 / 额度策略建议</h1>
+    <div class="sub">基于「2026年中扫黑除恶专项限制催收力度」与「桔子数科（橘子数科）暴雷致助贷行业承压」两大背景</div>
+    <div class="meta">专题分析报告 · 风控参考稿 · 2026年 · 文中阈值均为行业参考基准，落地需结合本机构真实客群分布与历史表现校准</div>
+  </div>
+
+  <div class="body">
+
+    <!-- 摘要 -->
+    <div class="exec">
+      <h3>📌 核心结论（摘要）</h3>
+      <ol>
+        <li><b>受损的本质不是"某类产品"，而是三类还款支撑同时失效：</b>靠高压催收回款、靠助贷平台兜底增信、靠借新还旧/多头滚续——同时具备越多，受损越重。</li>
+        <li><b>最容易受冲击的客群（高风险）：</b>① 共债多头 · 以贷养贷型；② 靠催收才回款的意愿敏感型；③ 助贷渠道重度依赖型；④ 欺诈/套现/反催收型。</li>
+        <li><b>相对稳定的客群（基本免疫）：</b>优质工薪/自营直销、有抵押/强担保、高履约老客、高收入负债可控客群——在行业出清期反而成为稀缺优质资产。</li>
+        <li><b>策略主线：</b>收紧下沉与共债、压降助贷依赖、锁定自营优质客群抢份额；同步将风控重心从"贷后催收"前移到"贷前准入 + 贷中动态额度"。</li>
+      </ol>
+    </div>
+
+    <!-- 一、事件背景与传导机制 -->
+    <h2>一、事件背景与风险传导机制</h2>
+
+    <h3>1.1 事件一：扫黑除恶专项对催收合规的收紧</h3>
+    <p>2026年中，扫黑除恶专项进一步压降消费金融领域的催收强度，表现为：</p>
+    <ul>
+      <li>严禁暴力、软暴力催收，严控骚扰借款人以外的第三人（通讯录、联系人外部扩散）；</li>
+      <li>委外/外包催收机构规范化、产能收缩，催收单价与合规成本上升；</li>
+      <li>催收频次、时段、话术受到严格约束，传统"高压触点"效果显著衰减；</li>
+      <li>"反催收联盟 / 代理投诉"产业化，专门瞄准催收合规漏洞进行投诉与债闹。</li>
+    </ul>
+    <p><b>受影响资产：</b>M1/M2 早期回款高度依赖"高压触点"的资产——即<b>还款意愿弱、需要被"催"才动的客户</b>，其自愈率将明显下降，账龄后移加剧。</p>
+
+    <h3>1.2 事件二：桔子数科暴雷与助贷行业承压</h3>
+    <p>据公开报道，桔子数科（旗下"桔小花""宜口袋"等）为约 <b>700 亿</b>规模的助贷平台，2026 年 6 月末全面停摆，被业内称为"助贷资金池第一案"。核心问题：</p>
+    <ul>
+      <li><b>资金池 / 截留还款：</b>平台截留客户还款、未划转放款银行，导致大量客户"还了钱却显示逾期"，征信被污染、重复催收；</li>
+      <li><b>刷单返佣诱导借款：</b>"借款次日还款返佣金"诱导用户，使部分人征信"变花"、多头叠加，资产质量先天较差；</li>
+      <li><b>监管补刀：</b>2025 年 10 月落地的助贷新规要求银行对合作机构<b>名单制管理</b>、划出年化利率 <b>24% 红线</b>；2026 年上半年，平安消金、中信消金、杭银消金、华瑞银行、晋商消金、蓝海银行等资金方密集将其列为退出/暂停投放机构。</li>
+    </ul>
+    <p><b>受影响资产：</b>依赖该渠道<b>获客、兜底增信（担保代偿/联合贷）</b>的存量资产——平台一倒，增信消失、风控模型失效、再融资无门，并触发"逃废债"预期。</p>
+
+    <h3>1.3 三根"还款支柱"同时断裂的传导链</h3>
+    <div class="flow">
+      <div class="step"><div class="n">支柱 ①</div><div class="t"><b>催收压出来的回款</b><br>被催收合规收紧打断 → M1/M2 自愈率下降，反催收抬头</div></div>
+      <div class="step"><div class="n">支柱 ②</div><div class="t"><b>助贷平台兜底 / 增信</b><br>被桔子暴雷 + 名单制退出打断 → 增信消失、模型失效</div></div>
+      <div class="step"><div class="n">支柱 ③</div><div class="t"><b>借新还旧 / 多头滚续</b><br>被平台停摆 + 行业收缩打断 → 共债链断裂、连环违约</div></div>
+    </div>
+    <div class="note">同时具备 ①②③ 的客户，是三面受敌的"共振风险点"；只依赖其中一根的，单点受损；<b>三者都不依赖</b>（自营、现金流稳、有第二还款来源）的客群基本免疫。</div>
+
+    <!-- 二、客群影响分析 -->
+    <h2>二、客群影响分析</h2>
+
+    <h3>2.1 客群 × 事件 × 影响程度评估矩阵</h3>
+    <table>
+      <thead>
+        <tr><th>客群</th><th class="c">催收收紧影响</th><th class="c">助贷暴雷影响</th><th class="c">综合风险</th><th>一句话定性</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><b>A 共债多头·以贷养贷</b></td><td class="c"><span class="badge b-red">极高</span></td><td class="c"><span class="badge b-red">极高</span></td><td class="c"><span class="badge b-red">极高</span></td><td>三支柱全断，连环违约重灾区</td></tr>
+        <tr><td><b>C 助贷渠道重度依赖</b></td><td class="c"><span class="badge b-amber">中</span></td><td class="c"><span class="badge b-red">极高</span></td><td class="c"><span class="badge b-red">极高</span></td><td>平台一倒，还款/增信/再融资同时断</td></tr>
+        <tr><td><b>B 催收意愿敏感型</b></td><td class="c"><span class="badge b-red">极高</span></td><td class="c"><span class="badge b-amber">中</span></td><td class="c"><span class="badge b-orange">高</span></td><td>有还款能力但靠压力才还，触点失效即坏</td></tr>
+        <tr><td><b>D 欺诈/套现/反催收</b></td><td class="c"><span class="badge b-orange">高</span></td><td class="c"><span class="badge b-orange">高</span></td><td class="c"><span class="badge b-orange">高</span></td><td>逃废债预期强化，恶意投诉激增</td></tr>
+        <tr><td><b>优质工薪 / 自营直销</b></td><td class="c"><span class="badge b-green">低</span></td><td class="c"><span class="badge b-green">低</span></td><td class="c"><span class="badge b-green">稳定</span></td><td>能力强+意愿强，不靠催收，非助贷</td></tr>
+        <tr><td><b>有抵押 / 强担保</b></td><td class="c"><span class="badge b-green">低</span></td><td class="c"><span class="badge b-green">低</span></td><td class="c"><span class="badge b-green">稳定</span></td><td>有第二还款来源兜底</td></tr>
+        <tr><td><b>高履约老客 / 复贷表现好</b></td><td class="c"><span class="badge b-green">低</span></td><td class="c"><span class="badge b-amber">低-中</span></td><td class="c"><span class="badge b-green">稳定</span></td><td>行为数据可信、违约概率低</td></tr>
+        <tr><td><b>高收入 · 负债可控</b></td><td class="c"><span class="badge b-green">低</span></td><td class="c"><span class="badge b-green">低</span></td><td class="c"><span class="badge b-green">稳定</span></td><td>杠杆低、抗波动强</td></tr>
+      </tbody>
+    </table>
+
+    <h3>2.2 高风险客群画像</h3>
+    <div class="cards">
+      <div class="card risk">
+        <div class="ct">A · 共债多头 / 以贷养贷型 <span class="tagm b-red">极高</span></div>
+        <div class="cl"><b>特征：</b>多头借贷≥3家、近6月征信查询频繁（"花户"）、循环贷/过桥依赖、负债收入比高、撸口子或债务优化人群。<br><b>传导：</b>平台一断，借新还旧链条断→连环违约；催收受限后无处"滚"。<br><b>关键指标：</b>多平台未结清笔数、征信查询次数、循环贷余额占比、展期/过桥次数。</div>
+      </div>
+      <div class="card risk">
+        <div class="ct">C · 助贷渠道重度依赖型 <span class="tagm b-red">极高</span></div>
+        <div class="cl"><b>特征：</b>经桔子类平台获客、联合贷/担保代偿模式、<b>还款打到平台而非银行</b>、刷单返佣"被撸"客户。<br><b>传导：</b>平台暴雷→"还了不算逾期"→征信污染+重复催收；增信消失；再融资无门。<br><b>关键指标：</b>助贷渠道占比、放款/还款路径、增信模式、渠道集中度。</div>
+      </div>
+      <div class="card mid">
+        <div class="ct">B · 催收意愿敏感型 <span class="tagm b-orange">高</span></div>
+        <div class="cl"><b>特征：</b>有还款能力但意愿弱、历史上"催一催就还"的M1轻逾期、失联倾向高、下沉县域、蓝领/灵活就业、年龄两端。<br><b>传导：</b>催收合规收紧→触点失效→自愈率骤降；反催收组织专盯这批。<br><b>关键指标：</b>历史催回率、首逾后自愈率、失联率、联系人有效性。</div>
+      </div>
+      <div class="card mid">
+        <div class="ct">D · 欺诈 / 套现 / 反催收型 <span class="tagm b-orange">高</span></div>
+        <div class="cl"><b>特征：</b>刷单返佣、职业背债、撸口子群、代理投诉话术。<br><b>传导：</b>催收受限+平台暴雷→逃废债预期强化、恶意投诉激增。<br><b>关键指标：</b>设备/IP/群控异常、共债集中度、投诉话术特征。</div>
+      </div>
+    </div>
+
+    <h3>2.3 相对稳定客群画像</h3>
+    <div class="cards">
+      <div class="card safe">
+        <div class="ct">优质工薪 / 自营直销 <span class="tagm b-green">稳定</span></div>
+        <div class="cl">银行代发工资、公积金社保连缴≥12月、征信干净、多头≤2家、DTI健康、公务员/事业/国企/大厂白领。能力强+意愿强，<b>不靠催收</b>，非助贷渠道，是资金方稀缺的优质资产。</div>
+      </div>
+      <div class="card safe">
+        <div class="ct">有抵押 / 强担保 <span class="tagm b-green">稳定</span></div>
+        <div class="cl">房抵/车抵/有强担保，有第二还款来源，抵押物充足，催收合规影响小。</div>
+      </div>
+      <div class="card safe">
+        <div class="ct">高履约老客 / 复贷佳 <span class="tagm b-green">稳定</span></div>
+        <div class="cl">全周期履约、行为评分高、额度使用率适中、无展期记录，行为数据可信。</div>
+      </div>
+      <div class="card safe">
+        <div class="ct">高收入 · 负债可控 <span class="tagm b-green">稳定</span></div>
+        <div class="cl">优质信用卡/大额分期白领，收入高、杠杆低，行业波动冲击最小，出清期可主动抢份额。</div>
+      </div>
+    </div>
+
+    <!-- 三、准入策略 -->
+    <h2>三、准入策略建议</h2>
+
+    <h3>3.1 分层准入方针</h3>
+    <table>
+      <thead><tr><th>客群</th><th class="c">准入态度</th><th>方针</th></tr></thead>
+      <tbody>
+        <tr><td>A 共债多头 / 以贷养贷</td><td class="c"><span class="badge b-red">严禁入</span></td><td>新增共债即拒；存量只降不增、分步清退</td></tr>
+        <tr><td>D 欺诈 / 反催收</td><td class="c"><span class="badge b-red">严禁入</span></td><td>黑名单/群控/代理投诉史直接拦截</td></tr>
+        <tr><td>C 助贷渠道依赖</td><td class="c"><span class="badge b-orange">审慎/限额</span></td><td>核查还款路径与增信真实性，控制渠道集中度</td></tr>
+        <tr><td>B 催收意愿敏感</td><td class="c"><span class="badge b-amber">提高门槛</span></td><td>以收入稳定性+行为分替代"催收回款"假设</td></tr>
+        <tr><td>优质工薪 / 自营</td><td class="c"><span class="badge b-green">积极争取</span></td><td>维持并加大投放，价格额度给优势</td></tr>
+        <tr><td>抵押 / 高履约老客</td><td class="c"><span class="badge b-green">维持/提额</span></td><td>按抵押率授信、老客动态提额</td></tr>
+      </tbody>
+    </table>
+
+    <h3>3.2 准入规则清单（硬规则 · 参考阈值）</h3>
+    <table>
+      <thead><tr><th>校验维度</th><th class="c">优质客群</th><th class="c">普通客群</th><th class="c">下沉/把握不足</th><th>说明</th></tr></thead>
+      <tbody>
+        <tr><td>当前逾期</td><td class="c">必须无</td><td class="c">必须无</td><td class="c">禁入</td><td>硬性一票否决</td></tr>
+        <tr><td>近12月 M2+ 次数</td><td class="c">0</td><td class="c">0</td><td class="c">禁入</td><td>中度以上逾期史</td></tr>
+        <tr><td>近24月 M3+ 次数</td><td class="c">0</td><td class="c">0</td><td class="c">禁入</td><td>严重逾期史</td></tr>
+        <tr><td>近1月贷款审批查询</td><td class="c">≤2</td><td class="c">≤4</td><td class="c">≤6</td><td>短时多头信号</td></tr>
+        <tr><td>近6月审批查询</td><td class="c">≤6</td><td class="c">≤10</td><td class="c">≤15</td><td>持续多头信号</td></tr>
+        <tr><td>未结清共债机构数</td><td class="c">≤2</td><td class="c">≤3</td><td class="c">≤4</td><td>新增共债即预警拒绝</td></tr>
+        <tr><td>DTI（月供/月收入）</td><td class="c">≤40%</td><td class="c">≤50%</td><td class="c">≤55%</td><td>含本次新增负债</td></tr>
+        <tr><td>收入稳定性</td><td class="c">社保/公积金连缴≥12月</td><td class="c">≥6月</td><td class="c">≥3月+代发</td><td>连缴月数、代发痕迹</td></tr>
+        <tr><td>年龄</td><td class="c">23–50</td><td class="c">22–55</td><td class="c">22–55</td><td>两端放宽需附加条件</td></tr>
+        <tr><td>反欺诈/反催收</td><td class="c" colspan="3">无黑名单命中、无群控/设备关联、无代理投诉史</td><td>命中即拦截/进观察名单</td></tr>
+      </tbody>
+    </table>
+    <div class="note warn"><b>软性加分/减分项：</b>职业白名单（编制/医疗/教育/国企）、公积金基数、地域集群风险、App行为数据、联系人网络质量；<b>助贷渠道客户</b>须额外核实"还款路径是否直连银行、增信是否真实有效"，无法核实的整体降档。</div>
+
+    <h3>3.3 反欺诈与反催收准入专项</h3>
+    <ul>
+      <li><b>设备指纹 + 群控识别：</b>同一设备/IP/模拟器批量申请、通讯录高度重合的团伙直接拦截。</li>
+      <li><b>刷单返佣识别：</b>识别"借款即还/当天结清/带返佣特征"的行为模式，此类客户征信易"花"且欺诈倾向高。</li>
+      <li><b>代理投诉/债闹标记：</b>命中投诉话术库、历史代理投诉、集中维权群体的，打标并纳入策略侧观察。</li>
+    </ul>
+
+    <!-- 四、额度策略 -->
+    <h2>四、额度策略建议</h2>
+
+    <h3>4.1 初始额度授信框架（按客群分层）</h3>
+    <table>
+      <thead><tr><th>客群</th><th>初始额度</th><th class="c">收入倍数</th><th class="c">单户封顶</th><th>说明</th></tr></thead>
+      <tbody>
+        <tr><td>优质工薪 / 自营</td><td>中高起步，可承接大额</td><td class="c">月收入 3–5 倍</td><td class="c">≤30万</td><td>代发/连缴达标，行为和征信双优</td></tr>
+        <tr><td>普通稳定客群</td><td>试水额度起步</td><td class="c">月收入 2–3 倍</td><td class="c">≤10万</td><td>表现良好再动态提额</td></tr>
+        <tr><td>高履约老客 / 复贷佳</td><td>动态提额</td><td class="c">5–8 倍</td><td class="c">≤30万</td><td>历史按时履约是核心依据</td></tr>
+        <tr><td>有抵押客群</td><td>按抵押率授信</td><td class="c">房抵 ≤70% / 车抵 ≤80%</td><td class="c">按LTV</td><td>以抵押物价值为锚</td></tr>
+        <tr><td>C 助贷渠道依赖</td><td>压缩上限</td><td class="c">不新增，≤原额度 50%</td><td class="c">暂停提额</td><td>核查还款路径与增信后放行</td></tr>
+        <tr><td>A 共债多头</td><td>冻结新增、存量压降</td><td class="c">只降不增</td><td class="c">—</td><td>分步压降、不续贷不展期</td></tr>
+        <tr><td>B 催收意愿敏感</td><td>低额度、短周期</td><td class="c">月收入 1 倍内</td><td class="c">≤2万</td><td>以小额短期控制敞口</td></tr>
+        <tr><td>D 欺诈 / 反催收</td><td>冻结 / 清退</td><td class="c">—</td><td class="c">—</td><td>直接清退</td></tr>
+      </tbody>
+    </table>
+
+    <h3>4.2 额度动态管理机制（贷中）</h3>
+    <table>
+      <thead><tr><th>触发信号</th><th>动作</th><th>说明</th></tr></thead>
+      <tbody>
+        <tr><td>近1月新增共债 ≥2 家</td><td>降额 + 打标</td><td>多头恶化，及时收口</td></tr>
+        <tr><td>出现 M1 逾期</td><td>限额 + 切换催收策略</td><td>合规智能催收、诉前调解</td></tr>
+        <tr><td>征信查询突增（近1月≥6）</td><td>风险排查 / 暂缓提额</td><td>疑似被多头攻击或资金紧张</td></tr>
+        <tr><td>设备/IP/群控异常</td><td>冻结</td><td>反欺诈直接动作</td></tr>
+        <tr><td>还款路径转向平台/异常</td><td>核查 + 直连资金方</td><td>防截留、防征信污染</td></tr>
+        <tr><td>命中反催收投诉话术</td><td>打标 + 策略侧观察</td><td>防止债闹扩散</td></tr>
+        <tr><td>长期履约、行为分上行</td><td>提额 + 降息</td><td>锁定优质客群、抢份额</td></tr>
+      </tbody>
+    </table>
+
+    <h3>4.3 定价—额度联动（24% 红线内做风险定价）</h3>
+    <ul>
+      <li><b>高风险客群：</b>高定价覆盖预期损失，但<b>低额度、短周期</b>控敞口——"高价小额"而非"高价大额"。</li>
+      <li><b>优质客群：</b>低利率 + 高额度，出清期主动让利抢份额，做长期客户价值（LTV）。</li>
+      <li><b>助贷渠道客群：</b>审慎定价，额度上限压缩，优先核查增信真实性。</li>
+    </ul>
+
+    <!-- 五、监控指标 -->
+    <h2>五、贷中监控与预警指标体系</h2>
+    <table>
+      <thead><tr><th>监控指标</th><th class="c">预警阈值（参考）</th><th>触发动作</th></tr></thead>
+      <tbody>
+        <tr><td>M1/M2 vintage 迁徙率</td><td class="c">环比上升超阈值</td><td>复盘准入策略、收紧对应客群</td></tr>
+        <tr><td>首逾率 / 首逾后自愈率</td><td class="c">自愈率显著下降</td><td>识别催收敏感型、优化合规催收</td></tr>
+        <tr><td>多头共债新增率</td><td class="c">近1月新增≥2家占比抬升</td><td>降额、限额、准入收紧</td></tr>
+        <tr><td>助贷渠道资产占比</td><td class="c">超集中度阈值</td><td>限额、分散渠道</td></tr>
+        <tr><td>还款路径异常率</td><td class="c">经平台还款占比异常</td><td>还款直连改造</td></tr>
+        <tr><td>反催收/投诉事件数</td><td class="c">命中话术库激增</td><td>打标、策略侧拦截</td></tr>
+      </tbody>
+    </table>
+
+    <!-- 六、结论 -->
+    <h2>六、结论与落地行动清单</h2>
+    <ol>
+      <li><b>准入端：</b>立即上线/收紧"共债多头、当前逾期、近12月M2+、近6月查询超限、DTI超限、反催收命中"六项一票否决/拦截规则。</li>
+      <li><b>助贷端：</b>全面排查助贷渠道资产——还款路径是否直连、增信是否真实、渠道集中度是否超标，不达标的压缩额度上限。</li>
+      <li><b>额度端：</b>对 A 类清退压降、C 类压缩上限、B 类小额短期；对自营优质与高履约老客动态提额+降息抢份额。</li>
+      <li><b>贷后端：</b>风控重心从"高压催收"前移到"贷前准入+贷中动态额度"，用合规智能催收 + 诉前调解替代高压触点。</li>
+      <li><b>监控端：</b>建立 vintage、首逾自愈率、共债新增、还款路径异常、反催收事件的周度看板，形成"预警—动作—复盘"闭环。</li>
+    </ol>
+    <div class="note">本报告为基于公开事件与行业通行机制的<b>分析参考</b>，其中所有数值阈值为行业参考基准，不代表监管规定，落地前须用本机构真实客群分层、历史 vintage 与损失率进行回测校准。</div>
+
+  </div>
+
+  <div class="foot">
+    消费金融风控专题分析报告 · 依据公开报道（桔子数科暴雷、2025年10月助贷新规名单制及24%利率红线等）与行业通行风险传导机制整理 · 仅供内部风控参考，不构成投资或经营决策依据，具体以监管最新规定及机构实际数据为准。
+  </div>
+
+</div>
+</body>
+</html>
